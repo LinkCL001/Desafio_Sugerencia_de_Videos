@@ -11,7 +11,13 @@ const setIframeUrl = (() =>{
     }
     return (url, id) => inyectaDato(url, id);
 })();
-
+let tiempo = 2040;
+const setTiempo = (() =>{
+    const inyectaDato = (url, id) => {
+        document.querySelector(`#${id}`).setAttribute('src', url+`?start=${tiempo}`);
+    }
+    return (url, id) => inyectaDato(url, id);
+})();
 // 2. Establecer una clase padre denominada Multimedia para:
 // ● Recibir la propiedad url, la cual será el atributo
 // src que necesite la etiqueta iframe para poder mostrar el video.
@@ -61,7 +67,9 @@ class Reproductor extends Multimedia { //Crear una clase “Reproductor”, sien
 // implemente el método inicie en el tiempo pasado como argumento al método
 // al ser invocado.
     setInicio(){
-        //?start=${2044}
+        
+        setTiempo(this.url, this.id)
+       //?start=${2044}
     }
 }
 // 4. Instanciar la clase hija pasando como argumento la URL y el id para cada etiqueta
@@ -83,5 +91,5 @@ series.playMultimedia();
 // instancias creadas.
 
 musica.setInicio();
-peliculas.setInicio();
-series.setInicio();
+// peliculas.setInicio();
+// series.setInicio();
